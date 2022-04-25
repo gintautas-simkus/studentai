@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Studentai</title>
+		<link rel='stylesheet' href='index.css'>
+		<script src='https://code.jquery.com/jquery-3.6.0.js'></script>
+		<script src='index.js'></script>
+	</head>
+	<body>
+		<div th:replace='_menu'></div>
+		<h3>Studentai</h3>
+		<table>
+			<tr>
+				<th>Vardas</th>
+				<th>Pavardė</th>
+				<th>Veiksmai</th>
+			</tr>
+			<tr class='irasas' th:each='s : ${studentai}'>
+				<td th:text='${s.getVardas()}'></td>
+				<td th:text='${s.getPavarde()}'></td>
+				<td><a href='studentai/delete' th:data-id='${s.getId()}' class='trinti'>Trinti</a></td>
+			</tr>
+		</table>
+		<form action='' method='post'>
+			<input type='text' name='vardas' required placeholder='Vardas'>
+			<input type='text' name='pavarde' required placeholder='Pavardė'>
+			<input type='submit' value='Kurti'>
+		</form>
+	</body>
+</html>

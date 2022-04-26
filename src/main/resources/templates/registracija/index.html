@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registracija</title>
+		<link rel='stylesheet' href='index.css'>
+		<script src='https://code.jquery.com/jquery-3.6.0.js'></script>
+		<script src='index.js'></script>
+	</head>
+	<body>
+		<div th:replace='_menu'></div>
+		<h3>Registracija</h3>
+		<table>
+			<tr>
+				<th>Dalykas</th>
+				<th>Studentai</th>
+			</tr>
+			<tr class='irasas' th:each='sd : ${studentaiDalykai}'>
+				<td th:text='${d.getPavadinimas()}'></td>
+				<td><a href='dalykai/delete' th:data-id='${d.getId()}' class='trinti'>Trinti</a></td>
+			</tr>
+		</table>
+		<form action='' method='post'>
+			<input type='text' name='pavadinimas' required placeholder='Pavadinimas'>
+			<input type='submit' value='Kurti'>
+		</form>
+	</body>
+</html>

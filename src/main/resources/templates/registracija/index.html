@@ -11,13 +11,13 @@
 		<h3>Registracija</h3>
 		<table>
 			<tr>
-				<th>Dalykas</th>
 				<th>Studentas</th>
+				<th>Dalykas</th>
 				<th>Veiksmai</th>
 			</tr>
 			<tr class='irasas' th:each='sd : ${studentaiDalykai}'>
-				<td th:text='${sd.getDalykasId()}'></td>
-				<td th:text='${sd.getStudentasId()}'></td>
+				<td th:text='${sd.getStudentas().getPilnasVardas()}'></td>
+				<td th:text='${sd.getDalykas().getPavadinimas()}'></td>
 				<td><a href='registracija/delete' th:data-id='${sd.getId()}' class='trinti'>Išregistruoti</a></td>
 			</tr>
 		</table>

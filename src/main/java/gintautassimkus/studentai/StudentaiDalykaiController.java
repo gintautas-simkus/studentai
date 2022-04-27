@@ -34,7 +34,7 @@ public class StudentaiDalykaiController {
 	public String create(@RequestParam(name = "studentas_id", required = true) Long studentas_id,
 			@RequestParam(name = "dalykas_id", required = true) Long dalykas_id) throws Exception
 	{
-		StudentasDalykas sd = new StudentasDalykas(studentas_id, dalykas_id);
+		StudentasDalykas sd = new StudentasDalykas(studentaiRepository.findById(studentas_id).get(), dalykaiRepository.findById(dalykas_id).get());
 		studentaiDalykaiRepository.save(sd);
 		return "redirect:/registracija";
 	}

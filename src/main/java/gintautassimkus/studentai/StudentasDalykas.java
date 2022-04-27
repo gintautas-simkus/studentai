@@ -1,9 +1,15 @@
 package gintautassimkus.studentai;
 
+import java.util.Optional;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,25 +18,37 @@ public class StudentasDalykas {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected Long id;
-	protected Long studentasId;
-	protected Long dalykasId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "studentas_id")
+	protected Studentas studentas;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "dalykas_id")
+	protected Dalykas dalykas;
 	
 	public StudentasDalykas() {}
 	
-	public StudentasDalykas(Long studentasId, Long dalykasId) {
-		this.studentasId = studentasId;
-		this.dalykasId = dalykasId;
+	public StudentasDalykas(Studentas studentas, Dalykas dalykas) {
+		this.studentas = studentas;
+		this.dalykas = dalykas;
 	}
 	
 	public Long getStudentasId() {
-		return studentasId;
+		return studentas.getId();
 	}
 	
 	public Long getDalykasId() {
-		return dalykasId;
+		return dalykas.getId();
 	}
 	
 	public Long getId() {
 		return id;
+	}
+	
+	public Studentas getStudentas() {
+		return studentas;
+	}
+	
+	public Dalykas getDalykas() {
+		return dalykas;
 	}
 }

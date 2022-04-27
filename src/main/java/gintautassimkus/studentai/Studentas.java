@@ -30,6 +30,10 @@ public class Studentas {
 		return pavarde;
 	}
 	
+	public String getPilnasVardas() {
+		return vardas + " " + pavarde;
+	}
+	
 	public Long getId() {
 		return id;
 	}

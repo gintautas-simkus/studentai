@@ -16,30 +16,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class StudentaiDalykaiController {
 	@Autowired
 	private StudentaiDalykaiRepository studentaiDalykaiRepository;
+	@Autowired
+	private StudentaiRepository studentaiRepository;
+	@Autowired
+	private DalykaiRepository dalykaiRepository;
 
 	@GetMapping("")
 	public String index(Model model)
 	{		
 		model.addAttribute("studentaiDalykai", studentaiDalykaiRepository.findAll());
+		model.addAttribute("studentai", studentaiRepository.findAll());
+		model.addAttribute("dalykai", dalykaiRepository.findAll());
 		return "registracija/index";
 	}
 	
-/*
 	@PostMapping("")
-	public String create(@RequestParam(name = "vardas", required = true) String vardas,
-			@RequestParam(name = "pavarde", required = true) String pavarde) throws Exception
+	public String create(@RequestParam(name = "studentas_id", required = true) Long studentas_id,
+			@RequestParam(name = "dalykas_id", required = true) Long dalykas_id) throws Exception
 	{
-		Studentas studentas = new Studentas(vardas, pavarde);
-		studentaiRepository.save(studentas);
-		return "redirect:/studentai";
+		StudentasDalykas sd = new StudentasDalykas(studentas_id, dalykas_id);
+		studentaiDalykaiRepository.save(sd);
+		return "redirect:/registracija";
 	}
-	
+
 	@PostMapping("delete")
 	public void delete(@RequestParam(name = "id", required = true) Long id,
 			HttpServletResponse response)
 	{
-		studentaiRepository.deleteById(id);
+		studentaiDalykaiRepository.deleteById(id);
 		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
-*/
 }

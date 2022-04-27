@@ -12,16 +12,23 @@
 		<table>
 			<tr>
 				<th>Dalykas</th>
-				<th>Studentai</th>
+				<th>Studentas</th>
+				<th>Veiksmai</th>
 			</tr>
 			<tr class='irasas' th:each='sd : ${studentaiDalykai}'>
-				<td th:text='${d.getPavadinimas()}'></td>
-				<td><a href='dalykai/delete' th:data-id='${d.getId()}' class='trinti'>Trinti</a></td>
+				<td th:text='${sd.getDalykasId()}'></td>
+				<td th:text='${sd.getStudentasId()}'></td>
+				<td><a href='registracija/delete' th:data-id='${sd.getId()}' class='trinti'>Išregistruoti</a></td>
 			</tr>
 		</table>
 		<form action='' method='post'>
-			<input type='text' name='pavadinimas' required placeholder='Pavadinimas'>
-			<input type='submit' value='Kurti'>
+			<select name='studentas_id'>
+				<option th:each='s : ${studentai}' th:value='${s.getId()}' th:text='${s.getPilnasVardas()}'></option>
+			</select>
+			<select name='dalykas_id'>
+				<option th:each='d : ${dalykai}' th:value='${d.getId()}' th:text='${d.getPavadinimas()}'></option>
+			</select>
+			<input type='submit' value='Registruoti'>
 		</form>
 	</body>
 </html>

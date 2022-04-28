@@ -51,4 +51,8 @@ public class StudentasDalykas {
 	public Dalykas getDalykas() {
 		return dalykas;
 	}
+	
+	public String getAprasymas() {
+		return studentas.getPavardeVardas() + " - " + dalykas.getPavadinimas();
+	}
 }

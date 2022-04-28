@@ -2,44 +2,54 @@
 <html>
 	<head>
 		<title>Pažymiai</title>
-		<link rel='stylesheet' href='index.css'>
-		<script src='https://code.jquery.com/jquery-3.6.0.js'></script>
-		<script src='index.js'></script>
+		<div th:replace='_head'></div>
 	</head>
-	<body>
-		<div th:replace='_menu'></div>
-		<h3>Pažymiai</h3>
-		<table>
-			<tr>
-				<th>Studentas</th>
-				<th>Dalykas</th>
-				<th>Pažymys</th>
-				<th>Veiksmai</th>
-			</tr>
-			<tr class='irasas' th:each='p : ${pazymiai}'>
-				<td th:text='${p.getStudentasDalykas().getStudentas().getPilnasVardas()}'></td>
-				<td th:text='${p.getStudentasDalykas().getDalykas().getPavadinimas()}'></td>
-				<td th:text='${p.getPazymys()}'></td>
-				<td><a href='pazymiai/delete' th:data-id='${p.getId()}' class='trinti'>Trinti</a></td>
-			</tr>
-		</table>
-		<form action='' method='post'>
-			<select name='studentas_dalykas_id'>
-				<option th:each='sd : ${studentaiDalykai}' th:value='${sd.getId()}' th:text='${sd.getAprasymas()}'></option>
-			</select>
-			<select name='pazymys'>
-				<option value='1'>1</option>
-				<option value='2'>2</option>
-				<option value='3'>3</option>
-				<option value='4'>4</option>
-				<option value='5'>5</option>
-				<option value='6'>6</option>
-				<option value='7'>7</option>
-				<option value='8'>8</option>
-				<option value='9'>9</option>
-				<option value='10'>10</option>
-			</select>
-			<input type='submit' value='Įvertinti'>
-		</form>
+	<body class='container'>
+		<div class='row'>
+			<div class='col-3'></div>
+			<div class='col-6'>
+				<div th:replace='_menu'></div>
+				<h3>Pažymiai</h3>
+				<table>
+					<tr>
+						<th>Studentas</th>
+						<th>Dalykas</th>
+						<th>Pažymys</th>
+						<th>Veiksmai</th>
+					</tr>
+					<tr class='irasas' th:each='p : ${pazymiai}'>
+						<td th:text='${p.getStudentasDalykas().getStudentas().getPilnasVardas()}'></td>
+						<td th:text='${p.getStudentasDalykas().getDalykas().getPavadinimas()}'></td>
+						<td th:text='${p.getPazymys()}'></td>
+						<td><a href='pazymiai/delete' th:data-id='${p.getId()}' class='trinti'>Trinti</a></td>
+					</tr>
+				</table>
+				<form action='' method='post' class='form-horizontal'>
+					<div class='row'>
+					<div class='col-5'>
+						<select name='studentas_dalykas_id' class='form-control'>
+							<option th:each='sd : ${studentaiDalykai}' th:value='${sd.getId()}' th:text='${sd.getAprasymas()}'></option>
+						</select>
+					</div>
+					<div class='col-4'>
+						<select name='pazymys' class='form-control'>
+							<option value='1'>1</option>
+							<option value='2'>2</option>
+							<option value='3'>3</option>
+							<option value='4'>4</option>
+							<option value='5'>5</option>
+							<option value='6'>6</option>
+							<option value='7'>7</option>
+							<option value='8'>8</option>
+							<option value='9'>9</option>
+							<option value='10'>10</option>
+						</select>
+					</div>
+					<div class='col-3'>
+						<input type='submit' value='Įvertinti' class='btn btn-primary'>
+					</div>
+				</form>
+			<div class='col-3'></div>
+		</div>
 	</body>
 </html>

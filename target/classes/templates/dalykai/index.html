@@ -2,26 +2,35 @@
 <html>
 	<head>
 		<title>Dalykai</title>
-		<link rel='stylesheet' href='index.css'>
-		<script src='https://code.jquery.com/jquery-3.6.0.js'></script>
-		<script src='index.js'></script>
+		<div th:replace='_head'></div>
 	</head>
-	<body>
-		<div th:replace='_menu'></div>
-		<h3>Dalykai</h3>
-		<table>
-			<tr>
-				<th>Pavadinimas</th>
-				<th>Veiksmai</th>
-			</tr>
-			<tr class='irasas' th:each='d : ${dalykai}'>
-				<td th:text='${d.getPavadinimas()}'></td>
-				<td><a href='dalykai/delete' th:data-id='${d.getId()}' class='trinti'>Trinti</a></td>
-			</tr>
-		</table>
-		<form action='' method='post'>
-			<input type='text' name='pavadinimas' required placeholder='Pavadinimas'>
-			<input type='submit' value='Kurti'>
-		</form>
+	<body class='container'>
+		<div class='row'>
+			<div class='col-3'></div>
+			<div class='col-6'>
+				<div th:replace='_menu'></div>
+				<h3>Dalykai</h3>
+				<table>
+					<tr>
+						<th>Pavadinimas</th>
+						<th>Veiksmai</th>
+					</tr>
+					<tr class='irasas' th:each='d : ${dalykai}'>
+						<td th:text='${d.getPavadinimas()}'></td>
+						<td><a href='dalykai/delete' th:data-id='${d.getId()}' class='trinti'>Trinti</a></td>
+					</tr>
+				</table>
+				<form action='' method='post' class='form-horizontal'>
+					<div class='row'>
+						<div class='col-10'>
+							<input type='text' name='pavadinimas' required placeholder='Pavadinimas' class='form-control' autofocus="autofocus">
+						</div>
+						<div class='col-2'>
+							<input type='submit' value='Kurti' class='btn btn-primary'>
+						</div>
+					</div>
+				</form>
+			<div class='col-3'></div>
+		</div>
 	</body>
 </html>

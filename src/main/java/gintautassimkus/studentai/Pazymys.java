@@ -1,5 +1,8 @@
 package gintautassimkus.studentai;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,6 +22,7 @@ public class Pazymys {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "studentas_dalykas_id")
 	protected StudentasDalykas studentasDalykas;
+	protected LocalDateTime createdAt;
 	
 	public Pazymys() {}
 	
@@ -37,5 +41,10 @@ public class Pazymys {
 	
 	public StudentasDalykas getStudentasDalykas() {
 		return studentasDalykas;
+	}
+	
+	public String getCreatedAt() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return createdAt.format(formatter);
 	}
 }

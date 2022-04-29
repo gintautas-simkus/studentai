@@ -14,11 +14,13 @@
 					<tr>
 						<th>Studentas</th>
 						<th>Dalykas</th>
+						<th>Registruotas</th>
 						<th>Veiksmai</th>
 					</tr>
 					<tr class='irasas' th:each='sd : ${studentaiDalykai}'>
 						<td th:text='${sd.getStudentas().getPilnasVardas()}'></td>
 						<td th:text='${sd.getDalykas().getPavadinimas()}'></td>
+						<td th:text='${sd.getCreatedAt()}'></td>
 						<td><a href='registracija/delete' th:data-id='${sd.getId()}' class='trinti'>Išregistruoti</a></td>
 					</tr>
 				</table>

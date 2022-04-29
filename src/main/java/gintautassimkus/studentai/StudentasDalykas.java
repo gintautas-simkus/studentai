@@ -1,5 +1,7 @@
 package gintautassimkus.studentai;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import javax.persistence.Column;
@@ -24,6 +26,7 @@ public class StudentasDalykas {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "dalykas_id")
 	protected Dalykas dalykas;
+	protected LocalDateTime createdAt;
 	
 	public StudentasDalykas() {}
 	
@@ -54,5 +57,10 @@ public class StudentasDalykas {
 	
 	public String getAprasymas() {
 		return studentas.getPavardeVardas() + " - " + dalykas.getPavadinimas();
+	}
+	
+	public String getCreatedAt() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return createdAt.format(formatter);
 	}
 }

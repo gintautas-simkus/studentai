@@ -15,12 +15,14 @@
 						<th>Studentas</th>
 						<th>Dalykas</th>
 						<th>Pažymys</th>
+						<th>Įvertintas</th>
 						<th>Veiksmai</th>
 					</tr>
 					<tr class='irasas' th:each='p : ${pazymiai}'>
 						<td th:text='${p.getStudentasDalykas().getStudentas().getPilnasVardas()}'></td>
 						<td th:text='${p.getStudentasDalykas().getDalykas().getPavadinimas()}'></td>
 						<td th:text='${p.getPazymys()}'></td>
+						<td th:text='${p.getCreatedAt()}'></td>
 						<td><a href='pazymiai/delete' th:data-id='${p.getId()}' class='trinti'>Trinti</a></td>
 					</tr>
 				</table>

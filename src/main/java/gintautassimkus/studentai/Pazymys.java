@@ -51,6 +51,6 @@ public class Pazymys {
 	}
 	
 	public String getKomentaras() {
-		return komentaras;
+		return komentaras.equals("") ? "-" : komentaras;
 	}
 }

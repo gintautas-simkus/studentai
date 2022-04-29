@@ -20,7 +20,7 @@ public class Pazymys {
 	protected Long id;
 	protected int pazymys;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "studentas_dalykas_id")
+	//@JoinColumn(name = "studentas_dalykas_id")
 	protected StudentasDalykas studentasDalykas;
 	protected LocalDateTime createdAt;
 	protected String komentaras;

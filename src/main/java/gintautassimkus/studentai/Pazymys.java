@@ -23,12 +23,14 @@ public class Pazymys {
 	@JoinColumn(name = "studentas_dalykas_id")
 	protected StudentasDalykas studentasDalykas;
 	protected LocalDateTime createdAt;
+	protected String komentaras;
 	
 	public Pazymys() {}
 	
-	public Pazymys(StudentasDalykas studentasDalykas, int pazymys) {
+	public Pazymys(StudentasDalykas studentasDalykas, int pazymys, String komentaras) {
 		this.studentasDalykas = studentasDalykas;
 		this.pazymys = pazymys;
+		this.komentaras = komentaras;
 	}
 	
 	public int getPazymys() {
@@ -46,5 +48,9 @@ public class Pazymys {
 	public String getCreatedAt() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		return createdAt.format(formatter);
+	}
+	
+	public String getKomentaras() {
+		return komentaras;
 	}
 }

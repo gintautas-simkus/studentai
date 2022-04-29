@@ -31,10 +31,11 @@ public class PazymiaiController {
 	
 	@PostMapping("")
 	public String create(@RequestParam(name = "studentas_dalykas_id", required = true) Long id,
-			@RequestParam(name = "pazymys", required = true) int pazymys) throws Exception
+			@RequestParam(name = "pazymys", required = true) int pazymys,
+			@RequestParam(name = "komentaras") String komentaras) throws Exception
 	{
 		StudentasDalykas studentasDalykas = studentaiDalykaiRepository.findById(id).get();
-		Pazymys paz = new Pazymys(studentasDalykas, pazymys);
+		Pazymys paz = new Pazymys(studentasDalykas, pazymys, komentaras);
 		pazymiaiRepository.save(paz);
 		return "redirect:/pazymiai";
 	}

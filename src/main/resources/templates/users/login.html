@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Prisijungimas</title>
+    </head>
+    <body>
+        <div th:if="${param.error}">
+            Neteisingas prisijungimo vardas arba slaptažodis.
+        </div>
+        <div th:if="${param.logout}">
+            Atsijungėte.
+        </div>
+        <div th:replace='users/_login_form'></div>
+    </body>
+</html>

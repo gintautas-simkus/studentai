@@ -3,14 +3,21 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Prisijungimas</title>
+        <div th:replace='_head'></div>
     </head>
-    <body>
-        <div th:if="${param.error}">
-            Neteisingas prisijungimo vardas arba slaptažodis.
+    <body class='container'>
+    	<div class='row'>
+	    	<div class='col-3'></div>
+	    	<div class='col-6'>
+		        <div th:if="${param.error}">
+		            Neteisingas prisijungimo vardas arba slaptažodis.
+		        </div>
+		        <div th:if="${param.logout}">
+		            Atsijungėte.
+		        </div>
+		        <div th:replace='users/_login_form'></div>
+		    </div>
+	        <div class='col-3'></div>
         </div>
-        <div th:if="${param.logout}">
-            Atsijungėte.
-        </div>
-        <div th:replace='users/_login_form'></div>
     </body>
 </html>

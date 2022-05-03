@@ -12,9 +12,8 @@
 		<a href='pazymiai'>Pažymiai</a>
 	</li>
 	<li>
-		<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Atsijungti"/>
-        </form>
+		<a th:inline='text' href='/logout' id='logout_link' th:data-token='${_csrf.token}'>
+			Atsijungti ([[${#httpServletRequest.remoteUser}]])
+		</a>
 	</li>
 </ul>

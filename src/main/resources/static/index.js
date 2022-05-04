@@ -1,6 +1,7 @@
 $(() => {
 	$('a.trinti').click(deleteHandler);
 	$('a#logout_link').click(logoutHandler);
+	$('#login_form input[name="username"]').focus();
 });
 
 function deleteHandler() {

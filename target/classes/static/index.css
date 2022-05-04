@@ -40,3 +40,20 @@ input {
 h3 {
 	color: crimson;
 }
+
+body {
+	margin-top: 20px !important;
+}
+
+#login_form input[type='submit'] {
+	margin-top: 20px !important;
+}
+
+#login_form input.form-control {
+	width: 50%;
+}
+
+#login_form label {
+	margin-bottom: 0;
+	margin-top: 6px;
+}

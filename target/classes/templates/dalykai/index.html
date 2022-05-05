@@ -13,14 +13,16 @@
 				<table>
 					<tr>
 						<th>Pavadinimas</th>
-						<th>Veiksmai</th>
+						<th th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>Veiksmai</th>
 					</tr>
 					<tr class='irasas' th:each='d : ${dalykai}'>
 						<td th:text='${d.getPavadinimas()}'></td>
-						<td><a href='dalykai/delete' th:data-id='${d.getId()}' class='trinti'>Trinti</a></td>
+						<td th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>
+							<a href='dalykai/delete' th:data-id='${d.getId()}' th:data-token='${_csrf.token}' class='trinti'>Trinti</a>
+						</td>
 					</tr>
 				</table>
-				<form action='' method='post' class='form-horizontal'>
+				<form th:if='${#httpServletRequest.isUserInRole("ADMIN")}' action='' method='post' class='form-horizontal'>
 					<div class='row'>
 						<div class='col-10'>
 							<input type='text' name='pavadinimas' required placeholder='Pavadinimas' class='form-control' autofocus="autofocus">
@@ -29,6 +31,7 @@
 							<input type='submit' value='Kurti' class='btn btn-primary'>
 						</div>
 					</div>
+					<input type='hidden' name='_csrf' th:value='${_csrf.token}'>
 				</form>
 			<div class='col-2'></div>
 		</div>

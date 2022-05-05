@@ -15,16 +15,18 @@
 						<th>Studentas</th>
 						<th>Dalykas</th>
 						<th>Registruotas</th>
-						<th>Veiksmai</th>
+						<th th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>Veiksmai</th>
 					</tr>
 					<tr class='irasas' th:each='sd : ${studentaiDalykai}'>
 						<td th:text='${sd.getStudentas().getPilnasVardas()}'></td>
 						<td th:text='${sd.getDalykas().getPavadinimas()}'></td>
 						<td th:text='${sd.getCreatedAt()}'></td>
-						<td><a href='registracija/delete' th:data-id='${sd.getId()}' class='trinti'>Išregistruoti</a></td>
+						<td th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>
+							<a href='registracija/delete' th:data-id='${sd.getId()}' th:data-token='${_csrf.token}' class='trinti'>Išregistruoti</a>
+						</td>
 					</tr>
 				</table>
-				<form action='' method='post' class='form-horizontal'>
+				<form th:if='${#httpServletRequest.isUserInRole("ADMIN")}' action='' method='post' class='form-horizontal'>
 					<div class='row'>
 						<div class='col-5'>
 							<select name='studentas_id' class='form-control'>
@@ -40,6 +42,7 @@
 							<input type='submit' value='Registruoti' class='btn btn-primary'>
 						</div>
 					</div>
+					<input type='hidden' name='_csrf' th:value='${_csrf.token}'>
 				</form>
 			<div class='col-2'></div>
 		</div>

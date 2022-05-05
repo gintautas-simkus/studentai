@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,6 +25,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers("/", "/index.js", "/index.css").permitAll()
+				.antMatchers("/studentai/delete", "/dalykai/delete", "/registracija/delete", "/pazymiai/delete")
+				.access("hasRole('ADMIN')")
+				// https://stackoverflow.com/questions/7347183/using-spring-security-how-can-i-use-http-methods-e-g-get-put-post-to-disti
+				.antMatchers(HttpMethod.POST, "/studentai", "/dalykai", "/registracija", "/pazymiai")
+				.access("hasRole('ADMIN')")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

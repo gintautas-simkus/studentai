@@ -5,7 +5,7 @@ $(() => {
 });
 
 function deleteHandler() {
-	$.post($(this).attr('href'), { id: $(this).attr('data-id') }).
+	$.post($(this).attr('href'), { id: $(this).data('id'), _csrf: $(this).data('token') }).
 		done(() => { $(this).parents('.irasas').remove() });
 	return false;
 }

@@ -17,7 +17,7 @@
 						<th>Pažymys</th>
 						<th>Komentaras</th>
 						<th>Įvertintas</th>
-						<th>Veiksmai</th>
+						<th th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>Veiksmai</th>
 					</tr>
 					<tr class='irasas' th:each='p : ${pazymiai}'>
 						<td th:text='${p.getStudentasDalykas().getStudentas().getPilnasVardas()}'></td>
@@ -25,10 +25,12 @@
 						<td th:text='${p.getPazymys()}'></td>
 						<td th:text='${p.getKomentaras()}'></td>
 						<td th:text='${p.getCreatedAt()}'></td>
-						<td><a href='pazymiai/delete' th:data-id='${p.getId()}' class='trinti'>Trinti</a></td>
+						<td th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>
+							<a href='pazymiai/delete' th:data-id='${p.getId()}' th:data-token='${_csrf.token}' class='trinti'>Trinti</a>
+						</td>
 					</tr>
 				</table>
-				<form action='' method='post' class='form-horizontal'>
+				<form th:if='${#httpServletRequest.isUserInRole("ADMIN")}' action='' method='post' class='form-horizontal'>
 					<div class='row'>
 					<div class='col-3'>
 						<select name='studentas_dalykas_id' class='form-control'>
@@ -55,6 +57,7 @@
 					<div class='col-3'>
 						<input type='submit' value='Įvertinti' class='btn btn-primary'>
 					</div>
+					<input type='hidden' name='_csrf' th:value='${_csrf.token}'>
 				</form>
 			<div class='col-2'></div>
 		</div>

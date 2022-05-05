@@ -14,15 +14,17 @@
 					<tr>
 						<th>Vardas</th>
 						<th>Pavardė</th>
-						<th>Veiksmai</th>
+						<th th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>Veiksmai</th>
 					</tr>
 					<tr class='irasas' th:each='s : ${studentai}'>
 						<td th:text='${s.getVardas()}'></td>
 						<td th:text='${s.getPavarde()}'></td>
-						<td><a href='studentai/delete' th:data-id='${s.getId()}' class='trinti'>Trinti</a></td>
+						<td th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>
+							<a href='studentai/delete' th:data-id='${s.getId()}' th:data-token='${_csrf.token}' class='trinti'>Trinti</a>
+						</td>
 					</tr>
 				</table>
-				<form action='' method='post' class='form-horizontal'>
+				<form th:if='${#httpServletRequest.isUserInRole("ADMIN")}' action='' method='post' class='form-horizontal'>
 					<div class='row'>
 						<div class='col-5'>
 							<input type='text' name='vardas' required placeholder='Vardas' class='form-control' autofocus="autofocus">
@@ -34,6 +36,7 @@
 							<input type='submit' value='Kurti' class='btn btn-primary'>
 						</div>
 					</div>
+					<input type='hidden' name='_csrf' th:value='${_csrf.token}'>
 				</form>
 			</div>
 			<div class='col-2'></div>

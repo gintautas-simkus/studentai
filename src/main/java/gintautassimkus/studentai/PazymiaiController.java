@@ -40,6 +40,8 @@ public class PazymiaiController {
 		return "redirect:/pazymiai";
 	}
 	
+	// NOTE: @PutMapping(value = "/employees/{id}")
+	// https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
 	@PostMapping("delete")
 	public void delete(@RequestParam(name = "id", required = true) Long id,
 			HttpServletResponse response)

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +39,18 @@ public class PazymiaiController {
 		Pazymys paz = new Pazymys(studentasDalykas, pazymys, komentaras);
 		pazymiaiRepository.save(paz);
 		return "redirect:/pazymiai";
+	}
+	
+	@GetMapping(value = "{id}/edit")
+	public String edit(@PathVariable Long id, Model model)
+	{
+		java.util.Optional<Pazymys> p = pazymiaiRepository.findById(id);
+		Pazymys pazymys = null;
+		if (!p.isEmpty()) {
+			pazymys = p.get();
+		}
+		model.addAttribute("pazymys", pazymys);
+		return "pazymiai/_edit";
 	}
 	
 	// NOTE: @PutMapping(value = "/employees/{id}")

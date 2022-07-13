@@ -27,6 +27,9 @@
 						<td th:text='${p.getCreatedAt()}'></td>
 						<td th:if='${#httpServletRequest.isUserInRole("ADMIN")}'>
 							<a href='pazymiai/delete' th:data-id='${p.getId()}' th:data-token='${_csrf.token}' class='trinti'>Trinti</a>
+							<button type="button" class="edit btn btn-primary" th:data-path='${"/pazymiai/" + p.getId() + "/edit"}'>
+  								Keisti
+							</button>
 						</td>
 					</tr>
 				</table>
@@ -61,5 +64,6 @@
 				</form>
 			<div class='col-2'></div>
 		</div>
+		<div th:replace="pazymiai/_edit_modal"></div>
 	</body>
 </html>

@@ -32,6 +32,14 @@ public class MyUserDetailsService implements UserDetailsService {
     }
     
     private String[] rolesFor(User u) {
+    	String[] roles;
+    	if (u.isAdmin()) {
+    		roles = new String[] { "ADMIN", "USER" };
+    	} else {
+    		roles = new String[] { "USER" };
+    	}
+    	return roles;
+/*
     	ArrayList<String> roles = new ArrayList<>();
     	roles.add("USER");
        	if (u.isAdmin()) { roles.add("ADMIN"); }
@@ -41,5 +49,6 @@ public class MyUserDetailsService implements UserDetailsService {
        		rolesArray[i] = roles.get(i);
        	}
        	return rolesArray;
+*/
     }
 }
